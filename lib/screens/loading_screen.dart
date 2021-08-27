@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import '../services/location.dart';
 
 class LoadingScreen extends StatefulWidget {
-  const LoadingScreen({ Key key }) : super(key: key);
+  const LoadingScreen({Key key}) : super(key: key);
 
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  void getLocation() async {
+    Location location = Location();
+    await location.getCurrentLocation();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLocation();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: (){},
-          child: Text('Get Location'),
-        )
-      ),
-    );
+    return Scaffold();
   }
 }
